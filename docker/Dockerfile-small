@@ -1,0 +1,25 @@
+FROM gumtreediff/gumtree
+
+RUN rm -rf /opt/jsparser
+RUN rm -rf /usr/bin/jsparser
+RUN rm -rf /usr/bin/gumtree
+
+# Install jsparser
+RUN git clone https://github.com/Rozelin-dc/jsparser.git /opt/jsparser --depth 1 \
+  && ln -s /opt/jsparser/jsparser /usr/bin/jsparser \
+  && npm --prefix /opt/jsparser/ install /opt/jsparser/
+
+# Install gumtree
+COPY . /opt/gumtree
+RUN /opt/gumtree/gradlew -PtestNative -p /opt/gumtree build \
+	&& ln -s /opt/gumtree/dist/build/install/gumtree/bin/gumtree /usr/bin/gumtree
+
+# Define volume diff to make available files to diff
+RUN mkdir -p /diff/left /diff/right
+WORKDIR /diff
+VOLUME /diff/left /diff/right
+
+# Expose port 4567 for webdiff
+EXPOSE 4567
+
+ENTRYPOINT ["gumtree"]
