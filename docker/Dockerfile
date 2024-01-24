@@ -29,7 +29,7 @@ RUN git clone https://github.com/GumTreeDiff/pythonparser.git /opt/pythonparser 
     && pip3 install parso
 
 # Install jsparser
-RUN git clone https://github.com/GumTreeDiff/jsparser.git /opt/jsparser --depth 1 \
+RUN git clone https://github.com/Rozelin-dc/jsparser.git /opt/jsparser --depth 1 \
     && ln -s /opt/jsparser/jsparser /usr/bin/jsparser \
     && npm --prefix /opt/jsparser/ install /opt/jsparser/
 
