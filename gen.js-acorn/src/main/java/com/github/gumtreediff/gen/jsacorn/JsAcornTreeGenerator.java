@@ -27,7 +27,7 @@ import com.github.gumtreediff.tree.TreeContext;
 
 import java.io.*;
 
-@Register(id = "js-acorn", accept = {"\\.js"}, priority = Registry.Priority.MAXIMUM)
+@Register(id = "js-acorn", accept = {"\\.(j|t)s"}, priority = Registry.Priority.MAXIMUM)
 public class JsAcornTreeGenerator extends ExternalProcessTreeGenerator {
 
     private static final String JS_ACORN_CMD
