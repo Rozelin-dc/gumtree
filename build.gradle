@@ -9,7 +9,7 @@ nexusPublishing {
     }
 }
 
-def projectsVersion = '3.1.0-SNAPSHOT'
+def projectsVersion = '4.0.0-beta3-SNAPSHOT'
 def isReleaseVersion = !projectsVersion.endsWith("SNAPSHOT")
 
 allprojects {
@@ -43,7 +43,6 @@ subprojects {
 
     apply plugin: 'checkstyle'
     checkstyle {
-        toolVersion = '8.36'
         configFile = rootProject.file('gumtree_checkstyle.xml')
         configProperties = [suppressionFile: "${rootProject.file('checkstyle_ignore.xml')}"]
         ignoreFailures = false
@@ -51,10 +50,10 @@ subprojects {
     }
 
     dependencies {
-        annotationProcessor 'org.atteo.classindex:classindex:3.10'
-        implementation 'org.atteo.classindex:classindex:3.10'
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-        testImplementation 'org.hamcrest:hamcrest-library:2.1'
+        annotationProcessor 'org.atteo.classindex:classindex:3.13'
+        implementation 'org.atteo.classindex:classindex:3.13'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+        testImplementation 'org.hamcrest:hamcrest-library:2.2'
     }
 
     test {
@@ -148,9 +147,9 @@ task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
 }
 
 def projectDescriptions = [
-    client: 'GumTree abstract client module.',
+    'client': 'GumTree abstract client module.',
     'client.diff': 'GumTree diff client.',
-    core: 'GumTree core module.', 'gen.antlr3': 'GumTree abstract AntLR module.',
+    'core': 'GumTree core module.', 'gen.antlr3': 'GumTree abstract AntLR module.',
     'gen.antlr3-antlr': 'GumTree tree generator for AntLR grammars (AntLR based)',
     'gen.antlr3-json': 'GumTree tree generator for JSON code (AntLR based).',
     'gen.antlr3-php': 'GumTree tree generator for PHP code (AntLR based).',
@@ -163,12 +162,17 @@ def projectDescriptions = [
     'gen.javaparser': 'GumTree tree generator for Java code (JavaParser based).',
     'gen.jdt': 'GumTree tree generator for Java code (Eclipse JDT based).',
     'gen.js': 'GumTree tree generator for JavaScript code (Rhino based).',
+    'gen.js-acorn': 'GumTree tree generator for JS. Requires jsparser.',
     'gen.python': 'GumTree tree generator for Python. Requires pythonparser.',
     'gen.ruby': 'GumTree tree generator for Ruby code (JRuby based).',
     'gen.srcml': 'GumTree tree generator for C/C++, C# and Java code. Requires srcml.',
+    'gen.treesitter': 'GumTree tree generator for Python. Requires tree-sitter-parser.',
+    'gen.treesitter-ng': 'GumTree tree generator for tree-sitter-ng.',
+    'gen.xml': 'GumTree tree generator for XML code (JSoup based).',
+    'gen.yaml': 'GumTree tree generator for YAML code (SnakeYAML based).',
 ]
 
-configure(subprojects.findAll { !(it.name in ['dist', 'benchmark']) }) { subproject ->
+configure(subprojects.findAll { !(it.name in ['dist', 'dist-native', 'benchmark']) }) { subproject ->
     apply plugin: "maven-publish"
     apply plugin: "signing"
 
