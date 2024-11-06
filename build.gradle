@@ -9,7 +9,7 @@ nexusPublishing {
     }
 }
 
-def projectsVersion = '4.0.0-beta3-SNAPSHOT'
+def projectsVersion = '4.0.0-beta4-SNAPSHOT'
 def isReleaseVersion = !projectsVersion.endsWith("SNAPSHOT")
 
 allprojects {
@@ -127,7 +127,7 @@ configure(jacocoProjects) {
 }
 
 task testReport(type: TestReport) {
-    destinationDir = file("$buildDir/reports/tests")
+    destinationDirectory.set(file("$layout.buildDirectory/reports/tests"))
     reportOn subprojects*.test
 }
 
