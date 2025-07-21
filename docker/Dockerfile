@@ -12,7 +12,7 @@ RUN apt-get update \
 RUN pip3 install pandas plotnine scipy jupyter
 
 # Set locale
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # Install srcML
 RUN wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb \
@@ -29,7 +29,7 @@ RUN git clone https://github.com/GumTreeDiff/pythonparser.git /opt/pythonparser 
     && pip3 install parso
 
 # Install jsparser
-RUN git clone https://github.com/Rozelin-dc/jsparser.git /opt/jsparser --depth 1 \
+RUN git clone -b change-babel https://github.com/Rozelin-dc/jsparser.git /opt/jsparser --depth 1 \
     && ln -s /opt/jsparser/jsparser /usr/bin/jsparser \
     && npm --prefix /opt/jsparser/ install /opt/jsparser/
 

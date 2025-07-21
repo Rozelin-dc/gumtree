@@ -5,7 +5,7 @@ RUN rm -rf /usr/bin/jsparser
 RUN rm -rf /usr/bin/gumtree
 
 # Install jsparser
-RUN git clone https://github.com/Rozelin-dc/jsparser.git /opt/jsparser --depth 1 \
+RUN git clone -b change-babel https://github.com/Rozelin-dc/jsparser.git /opt/jsparser --depth 1 \
   && ln -s /opt/jsparser/jsparser /usr/bin/jsparser \
   && npm --prefix /opt/jsparser/ install /opt/jsparser/
 
