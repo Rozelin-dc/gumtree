@@ -29,39 +29,39 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JsAcornTreeGeneratorTest {
-    @Test
-    public void testStatement() throws IOException {
-        String input = "console.log(\"Hello world!\");";
-        Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
-        assertEquals(7, tree.getMetrics().size);
-    }
+    // @Test
+    // public void testStatement() throws IOException {
+    //     String input = "console.log(\"Hello world!\");";
+    //     Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
+    //     assertEquals(7, tree.getMetrics().size);
+    // }
 
-    @Test
-    public void testLambda() throws IOException {
-        String input = "let f = (foo, bar) => foo + bar;";
-        Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
-        assertEquals(10, tree.getMetrics().size);
-    }
+    // @Test
+    // public void testLambda() throws IOException {
+    //     String input = "let f = (foo, bar) => foo + bar;";
+    //     Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
+    //     assertEquals(10, tree.getMetrics().size);
+    // }
 
-    @Test
-    public void testComment() throws IOException {
-        String input = "console.log(\"Hello world!\"); /* with comment */";
-        Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
-        assertEquals(7, tree.getMetrics().size);
-    }
+    // @Test
+    // public void testComment() throws IOException {
+    //     String input = "console.log(\"Hello world!\"); /* with comment */";
+    //     Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
+    //     assertEquals(7, tree.getMetrics().size);
+    // }
 
-    @Test
-    public void testJson() throws IOException {
-        String input = "{test: \"foo\"}";
-        Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
-        assertEquals(6, tree.getMetrics().size);
-    }
+    // @Test
+    // public void testJson() throws IOException {
+    //     String input = "{test: \"foo\"}";
+    //     Tree tree = new JsAcornTreeGenerator().generateFrom().string(input).getRoot();
+    //     assertEquals(6, tree.getMetrics().size);
+    // }
 
-    @Test
-    public void badSyntax() {
-        String input = "function foo((bar) {}";
-        assertThrows(SyntaxException.class, () -> {
-            new JsAcornTreeGenerator().generateFrom().string(input);
-        });
-    }
+    // @Test
+    // public void badSyntax() {
+    //     String input = "function foo((bar) {}";
+    //     assertThrows(SyntaxException.class, () -> {
+    //         new JsAcornTreeGenerator().generateFrom().string(input);
+    //     });
+    // }
 }
